@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Cache\Tests\Adapter;
 
+use Cache\IntegrationTests\CachePoolTest;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\ChainAdapter;
@@ -19,15 +20,15 @@ use Symfony\Component\Cache\Tests\Fixtures\ExternalAdapter;
 /**
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class ChainAdapterTest extends AdapterTestCase
+class ChainAdapterTest extends CachePoolTest
 {
-    public function createCachePool($defaultLifetime = 0)
+    public function createCachePool()
     {
         if (defined('HHVM_VERSION')) {
             $this->skippedTests['testDeferredSaveWithoutCommit'] = 'Fails on HHVM';
         }
 
-        return new ChainAdapter(array(new ArrayAdapter($defaultLifetime), new ExternalAdapter(), new FilesystemAdapter('', $defaultLifetime)), $defaultLifetime);
+        return new ChainAdapter(array(new ArrayAdapter(), new ExternalAdapter(), new FilesystemAdapter()));
     }
 
     /**

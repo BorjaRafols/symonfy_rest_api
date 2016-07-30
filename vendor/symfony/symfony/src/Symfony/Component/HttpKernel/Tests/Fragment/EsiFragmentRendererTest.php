@@ -28,7 +28,6 @@ class EsiFragmentRendererTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @group legacy
-     * @requires function Symfony\Bridge\PhpUnit\ErrorAssert::assertDeprecationsAreTriggered
      */
     public function testRenderFallbackWithObjectAttributesIsDeprecated()
     {

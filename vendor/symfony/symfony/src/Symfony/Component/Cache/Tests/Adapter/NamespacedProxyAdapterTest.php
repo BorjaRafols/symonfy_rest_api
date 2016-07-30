@@ -19,8 +19,8 @@ use Symfony\Component\Cache\Adapter\ProxyAdapter;
  */
 class NamespacedProxyAdapterTest extends ProxyAdapterTest
 {
-    public function createCachePool($defaultLifetime = 0)
+    public function createCachePool()
     {
-        return new ProxyAdapter(new ArrayAdapter(), 'foo', $defaultLifetime);
+        return new ProxyAdapter(new ArrayAdapter(), 'foo');
     }
 }

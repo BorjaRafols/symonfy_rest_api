@@ -475,7 +475,7 @@ abstract class Client
         $request = $this->internalRequest;
 
         if (in_array($this->internalResponse->getStatus(), array(302, 303))) {
-            $method = 'GET';
+            $method = 'get';
             $files = array();
             $content = null;
         } else {
@@ -484,7 +484,7 @@ abstract class Client
             $content = $request->getContent();
         }
 
-        if ('GET' === strtoupper($method)) {
+        if ('get' === strtolower($method)) {
             // Don't forward parameters for GET request as it should reach the redirection URI
             $parameters = array();
         } else {
@@ -542,9 +542,9 @@ abstract class Client
             return parse_url($currentUri, PHP_URL_SCHEME).':'.$uri;
         }
 
-        // anchor or query string parameters?
-        if (!$uri || '#' == $uri[0] || '?' == $uri[0]) {
-            return preg_replace('/[#?].*?$/', '', $currentUri).$uri;
+        // anchor?
+        if (!$uri || '#' == $uri[0]) {
+            return preg_replace('/#.*?$/', '', $currentUri).$uri;
         }
 
         if ('/' !== $uri[0]) {

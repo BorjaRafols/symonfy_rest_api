@@ -11,11 +11,12 @@
 
 namespace Symfony\Component\Cache\Tests\Adapter;
 
+use Cache\IntegrationTests\CachePoolTest;
 use Symfony\Component\Cache\Adapter\ApcuAdapter;
 
-class ApcuAdapterTest extends AdapterTestCase
+class ApcuAdapterTest extends CachePoolTest
 {
-    public function createCachePool($defaultLifetime = 0)
+    public function createCachePool()
     {
         if (defined('HHVM_VERSION')) {
             $this->skippedTests['testDeferredSaveWithoutCommit'] = 'Fails on HHVM';
@@ -27,7 +28,7 @@ class ApcuAdapterTest extends AdapterTestCase
             $this->markTestSkipped('Fails transiently on Windows.');
         }
 
-        return new ApcuAdapter(str_replace('\\', '.', __CLASS__), $defaultLifetime);
+        return new ApcuAdapter(str_replace('\\', '.', __CLASS__));
     }
 
     public function testUnserializable()

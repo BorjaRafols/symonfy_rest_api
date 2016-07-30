@@ -62,12 +62,11 @@ class ButtonBuilder implements \IteratorAggregate, FormBuilderInterface
      */
     public function __construct($name, array $options = array())
     {
-        $name = (string) $name;
-        if ('' === $name) {
+        if (empty($name) && 0 != $name) {
             throw new InvalidArgumentException('Buttons cannot have empty names.');
         }
 
-        $this->name = $name;
+        $this->name = (string) $name;
         $this->options = $options;
     }
 

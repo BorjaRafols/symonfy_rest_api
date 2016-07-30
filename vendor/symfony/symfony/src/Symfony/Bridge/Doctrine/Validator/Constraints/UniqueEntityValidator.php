@@ -135,7 +135,6 @@ class UniqueEntityValidator extends ConstraintValidator
             ->atPath($errorPath)
             ->setParameter('{{ value }}', $invalidValue)
             ->setInvalidValue($invalidValue)
-            ->setCode(UniqueEntity::NOT_UNIQUE_ERROR)
             ->addViolation();
     }
 }

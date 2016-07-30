@@ -95,9 +95,9 @@ FrameworkBundle
 HttpKernel
 ----------
 
- * Passing non-scalar values as URI attributes to the ESI and SSI renderers has been
+ * Passing objects as URI attributes to the ESI and SSI renderers has been
    deprecated and will be removed in Symfony 4.0. The inline fragment
-   renderer should be used with non-scalar attributes.
+   renderer should be used with object attributes.
 
  * The `ControllerResolver::getArguments()` method has been deprecated and will
    be removed in 4.0. If you have your own `ControllerResolverInterface`
